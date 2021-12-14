@@ -10,20 +10,16 @@ import UIKit
 class WelcomeViewController: UIViewController {
     @IBOutlet weak var userLabel: UILabel!
     
+    var userLogin: String!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        userLabel.text = userLogin
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let loginViewController = segue.destination as! LoginViewController
-        loginViewController.userInput = userLabel.text
-        
-    }
-
     @IBAction func logOutAction() {
-        dismiss(animated: true)
+        dismiss(animated: true) {
+        }
     }
     
 }
