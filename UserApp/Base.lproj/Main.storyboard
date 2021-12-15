@@ -40,8 +40,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="logInAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="YmL-iA-oPV"/>
-                                    <segue destination="gZD-bm-fBN" kind="presentation" modalPresentationStyle="fullScreen" id="S2a-1b-IsS"/>
+                                    <action selector="logInAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hPL-Ze-xEG"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="O1b-eo-aLP">
@@ -84,9 +83,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="logInButton" destination="hi0-MM-mEO" id="RmQ-C8-4Jg"/>
                         <outlet property="passwordInputTF" destination="2PP-5H-bGb" id="URp-Y9-tcc"/>
                         <outlet property="userInputTF" destination="qOM-A7-8TM" id="x7Q-NL-Wgb"/>
+                        <segue destination="gZD-bm-fBN" kind="presentation" identifier="welcomeVC" modalPresentationStyle="fullScreen" id="rDP-GV-Wr8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

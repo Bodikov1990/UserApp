@@ -11,8 +11,6 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var userInputTF: UITextField!
     @IBOutlet weak var passwordInputTF: UITextField!
-    @IBOutlet weak var logInButton: UIButton!
-    
     
     private var name = "Kuat"
     private var password = "Genius"
@@ -33,26 +31,16 @@ class LoginViewController: UIViewController {
         super .touchesBegan(touches, with: event)
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let welcomeVC = segue.destination as! WelcomeViewController
         welcomeVC.userLogin = userInputTF.text
     }
     
-    @IBAction func logInAction() {
-        
-        guard let inputText = userInputTF.text, !inputText.isEmpty else {
-            showAlert(title: "User name is empty", message: "Please enter your name")
-            return
-        }
-        
-        if userInputTF.text != name {
-            showAlert(title: "Incorrect user name", message: "Please enter correct name")
-            return
-        } else if passwordInputTF.text != password {
-            showAlert(title: "Incorrect password", message: "Please enter correct password")
-            return
-        }
+    @IBAction func logInAction(_ sender: UIButton) {
+        chekForValid()
     }
+    
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         let welocomViewController = segue.source as! WelcomeViewController
@@ -66,6 +54,21 @@ class LoginViewController: UIViewController {
     
     @IBAction func showPasswordAction() {
         passwordAlert(title: "User password is", message: "\(password)")
+    }
+    
+    private func chekForValid() {
+        guard let inputText = userInputTF.text, !inputText.isEmpty else {
+            showAlert(title: "User name is empty", message: "Please enter your name")
+            return
+        }
+        
+        if userInputTF.text != name {
+            showAlert(title: "Incorrect user name", message: "Please enter correct name")
+            return
+        } else if passwordInputTF.text != password {
+            showAlert(title: "Incorrect password", message: "Please enter correct password")
+            return
+        }
     }
     
 }
@@ -99,7 +102,7 @@ extension LoginViewController {
         present(passwordAlert, animated: true)
     }
 }
-//MARK: - TextFieldDelegate
+
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == userInputTF {
@@ -111,8 +114,9 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
         if textField == passwordInputTF {
-            logInAction()
+            performSegue(withIdentifier: "welcomeVC", sender: self)
         }
     }
 }
