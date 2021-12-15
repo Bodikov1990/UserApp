@@ -12,12 +12,18 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userInputTF: UITextField!
     @IBOutlet weak var passwordInputTF: UITextField!
     @IBOutlet weak var logInButton: UIButton!
+
     
     private var name = "Kuat"
     private var password = "Genius"
     
+    var clearUser: String!
+    var clearPassword: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userInputTF.text = clearUser
+        passwordInputTF.text = clearPassword
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,6 +45,12 @@ class LoginViewController: UIViewController {
             showAlert(title: "Incorrect password", message: "Please enter correct password")
             return
         }
+    }
+    
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+        let welocomViewController = segue.destination as! WelcomeViewController
+        userInputTF.text = welocomViewController.clearUser
+        passwordInputTF.text = welocomViewController.clearPassword
     }
     
     @IBAction func showUserNameAction() {
