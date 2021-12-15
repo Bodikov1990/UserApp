@@ -8,31 +8,38 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var userInputTF: UITextField!
     @IBOutlet weak var passwordInputTF: UITextField!
     @IBOutlet weak var logInButton: UIButton!
-
+    
     
     private var name = "Kuat"
     private var password = "Genius"
     
-    var clearUser: String!
-    var clearPassword: String!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        userInputTF.text = clearUser
-        passwordInputTF.text = clearPassword
+        userInputTF.delegate = self
+        passwordInputTF.delegate = self
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.systemPink.cgColor,
+                                UIColor.blue.cgColor]
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super .touchesBegan(touches, with: event)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let welcomeVC = segue.destination as! WelcomeViewController
         welcomeVC.userLogin = userInputTF.text
     }
     
     @IBAction func logInAction() {
-
+        
         guard let inputText = userInputTF.text, !inputText.isEmpty else {
             showAlert(title: "User name is empty", message: "Please enter your name")
             return
@@ -48,13 +55,13 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
-        let welocomViewController = segue.destination as! WelcomeViewController
-        userInputTF.text = welocomViewController.clearUser
-        passwordInputTF.text = welocomViewController.clearPassword
+        let welocomViewController = segue.source as! WelcomeViewController
+        userInputTF.text = ""
+        passwordInputTF.text = ""
     }
     
     @IBAction func showUserNameAction() {
-       userNameAlert(title: "User name is", message: "\(name)")
+        userNameAlert(title: "User name is", message: "\(name)")
     }
     
     @IBAction func showPasswordAction() {
@@ -73,7 +80,7 @@ extension LoginViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-
+    
     private func userNameAlert(title: String, message: String) {
         let userAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let getUser = UIAlertAction(title: "Ok", style: .default) { _ in
@@ -82,7 +89,7 @@ extension LoginViewController {
         userAlert.addAction(getUser)
         present(userAlert, animated: true)
     }
-
+    
     private func passwordAlert(title: String, message: String) {
         let passwordAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let getPassword = UIAlertAction(title: "Ok", style: .default) { _ in
@@ -90,5 +97,22 @@ extension LoginViewController {
         }
         passwordAlert.addAction(getPassword)
         present(passwordAlert, animated: true)
+    }
+}
+//MARK: - TextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userInputTF {
+            passwordInputTF.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == passwordInputTF {
+            logInAction()
+        }
     }
 }
