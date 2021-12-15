@@ -31,7 +31,6 @@ class LoginViewController: UIViewController {
         super .touchesBegan(touches, with: event)
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let welcomeVC = segue.destination as! WelcomeViewController
         welcomeVC.userLogin = userInputTF.text
@@ -39,11 +38,11 @@ class LoginViewController: UIViewController {
     
     @IBAction func logInAction(_ sender: UIButton) {
         chekForValid()
+        performSegue(withIdentifier: "welcomeVC", sender: self)
     }
     
-    
     @IBAction func unwind(for segue: UIStoryboardSegue) {
-        let welocomViewController = segue.source as! WelcomeViewController
+        _ = segue.source as! WelcomeViewController
         userInputTF.text = ""
         passwordInputTF.text = ""
     }
@@ -109,13 +108,14 @@ extension LoginViewController: UITextFieldDelegate {
             passwordInputTF.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
+            chekForValid()
         }
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         if textField == passwordInputTF {
+            chekForValid()
             performSegue(withIdentifier: "welcomeVC", sender: self)
         }
     }
