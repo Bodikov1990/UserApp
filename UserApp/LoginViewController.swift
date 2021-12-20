@@ -27,22 +27,21 @@ class LoginViewController: UIViewController {
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super .touchesBegan(touches, with: event)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let welcomeVC = segue.destination as! WelcomeViewController
         welcomeVC.userLogin = userInputTF.text
     }
     
-    @IBAction func logInAction(_ sender: UIButton) {
-        chekForValid()
-        performSegue(withIdentifier: "welcomeVC", sender: self)
+    @IBAction func logInAction() {
+        if userInputTF.text != name || passwordInputTF.text != password {
+            showAlert(
+                title: "Invalid login or password",
+                message: "Please, enter correct login and password"
+            )
+        }
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
-        _ = segue.source as! WelcomeViewController
         userInputTF.text = ""
         passwordInputTF.text = ""
     }
@@ -54,22 +53,6 @@ class LoginViewController: UIViewController {
     @IBAction func showPasswordAction() {
         passwordAlert(title: "User password is", message: "\(password)")
     }
-    
-    private func chekForValid() {
-        guard let inputText = userInputTF.text, !inputText.isEmpty else {
-            showAlert(title: "User name is empty", message: "Please enter your name")
-            return
-        }
-        
-        if userInputTF.text != name {
-            showAlert(title: "Incorrect user name", message: "Please enter correct name")
-            return
-        } else if passwordInputTF.text != password {
-            showAlert(title: "Incorrect password", message: "Please enter correct password")
-            return
-        }
-    }
-    
 }
 // MARK: - ALerts
 extension LoginViewController {
@@ -102,21 +85,20 @@ extension LoginViewController {
     }
 }
 
+//MARK: - Private methods
 extension LoginViewController: UITextFieldDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super .touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == userInputTF {
             passwordInputTF.becomeFirstResponder()
         } else {
-            textField.resignFirstResponder()
-            chekForValid()
+            logInAction()
+            performSegue(withIdentifier: "welcomeVC", sender: nil)
         }
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == passwordInputTF {
-            chekForValid()
-            performSegue(withIdentifier: "welcomeVC", sender: self)
-        }
     }
 }
