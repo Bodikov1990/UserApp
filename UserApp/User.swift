@@ -29,7 +29,7 @@ struct Person {
     }
     
     static func getPerson() -> Person{
-        Person(name: "Kuat", surname: "Bodikov", image: "photo_2021-10-25 14.30.15")
+        Person(name: "Kuat", surname: "Bodikov", image: "photo")
     }
     
 }
