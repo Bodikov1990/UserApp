@@ -1,5 +1,5 @@
 //
-//  UserInfoViewController.swift
+//  ImageViewController.swift
 //  UserApp
 //
 //  Created by Kuat Bodikov on 21.12.2021.
@@ -7,7 +7,12 @@
 
 import UIKit
 
-class UserInfoViewController: UIViewController {
+class ImageViewController: UIViewController {
+    @IBOutlet weak var imageView: UIImageView! {
+        didSet {
+            imageView.layer.cornerRadius = imageView.frame.height / 2
+        }
+    }
     
     var user: User!
     
@@ -19,13 +24,8 @@ class UserInfoViewController: UIViewController {
                                 UIColor.blue.cgColor]
         view.layer.insertSublayer(gradientLayer, at: 0)
         
-        title = user.person.fullname
-  
+        imageView.image = UIImage(named: user.person.image)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let imageVC = segue.destination as? ImageViewController else { return }
-        imageVC.user = user
-    }
 
 }
