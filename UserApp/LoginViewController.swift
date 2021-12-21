@@ -17,9 +17,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userInputTF.delegate = self
-        passwordInputTF.delegate = self
-        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [UIColor.systemPink.cgColor,
@@ -28,8 +25,17 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let welcomeVC = segue.destination as! WelcomeViewController
-        welcomeVC.userLogin = userInputTF.text
+        guard let tabBarController = segue.destination as? UITabBarController else { return }
+        guard let viewControllers = tabBarController.viewControllers else { return }
+        
+        for viewController in viewControllers {
+            if let welcomeVC = viewController as? WelcomeViewController {
+                welcomeVC.userLogin = userInputTF.text
+            } else if let navigationVC = viewController as? UINavigationController {
+                let userInfoVC = segue.destination as! UserInfoViewController
+//                Надо дописать
+            }
+        }
     }
     
     @IBAction func logInAction() {

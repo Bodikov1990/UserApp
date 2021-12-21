@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		121A35912771FD9100F53FF6 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A35902771FD9100F53FF6 /* UserInfoViewController.swift */; };
+		121A3595277204A000F53FF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A3594277204A000F53FF6 /* User.swift */; };
 		12C6E0892767DD6100C77D7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6E0882767DD6100C77D7F /* AppDelegate.swift */; };
 		12C6E08B2767DD6100C77D7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6E08A2767DD6100C77D7F /* SceneDelegate.swift */; };
 		12C6E08D2767DD6100C77D7F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6E08C2767DD6100C77D7F /* LoginViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		121A35902771FD9100F53FF6 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		121A3594277204A000F53FF6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		12C6E0852767DD6100C77D7F /* UserApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UserApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12C6E0882767DD6100C77D7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12C6E08A2767DD6100C77D7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 		12EC69B32770BA00009AD13E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				121A3594277204A000F53FF6 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -88,6 +93,7 @@
 			children = (
 				12C6E08C2767DD6100C77D7F /* LoginViewController.swift */,
 				12C6E09C2767E4FD00C77D7F /* WelcomeViewController.swift */,
+				121A35902771FD9100F53FF6 /* UserInfoViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -183,6 +189,8 @@
 			files = (
 				12C6E08D2767DD6100C77D7F /* LoginViewController.swift in Sources */,
 				12C6E09D2767E4FD00C77D7F /* WelcomeViewController.swift in Sources */,
+				121A3595277204A000F53FF6 /* User.swift in Sources */,
+				121A35912771FD9100F53FF6 /* UserInfoViewController.swift in Sources */,
 				12C6E0892767DD6100C77D7F /* AppDelegate.swift in Sources */,
 				12C6E08B2767DD6100C77D7F /* SceneDelegate.swift in Sources */,
 			);
