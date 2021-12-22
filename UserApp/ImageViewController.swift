@@ -13,6 +13,7 @@ class ImageViewController: UIViewController {
             imageView.layer.cornerRadius = imageView.frame.height / 2
         }
     }
+    @IBOutlet weak var dateLabel: UILabel!
     
     var user: User!
     
@@ -25,6 +26,7 @@ class ImageViewController: UIViewController {
         view.layer.insertSublayer(gradientLayer, at: 0)
         
         imageView.image = UIImage(named: user.person.image)
+        dateLabel.text = user.person.date
     }
     
 

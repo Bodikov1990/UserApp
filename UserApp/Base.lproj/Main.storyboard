@@ -226,16 +226,25 @@
                                     <constraint firstAttribute="height" constant="200" id="vJq-Ey-fjz"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pJ-Pu-QIR">
+                                <rect key="frame" x="139" y="414" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HaW-iK-pRt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="0pJ-Pu-QIR" firstAttribute="centerX" secondItem="9Bb-GN-Rm9" secondAttribute="centerX" id="5gu-Zj-e8Q"/>
+                            <constraint firstItem="0pJ-Pu-QIR" firstAttribute="top" secondItem="y2v-md-BpB" secondAttribute="bottom" constant="30" id="RMp-Cs-3nS"/>
                             <constraint firstItem="y2v-md-BpB" firstAttribute="centerX" secondItem="9Bb-GN-Rm9" secondAttribute="centerX" id="Rkk-g1-0Os"/>
                             <constraint firstItem="y2v-md-BpB" firstAttribute="centerY" secondItem="9Bb-GN-Rm9" secondAttribute="centerY" id="y8E-DY-7Q3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YwP-B3-S0e"/>
                     <connections>
+                        <outlet property="dateLabel" destination="0pJ-Pu-QIR" id="FTx-Er-xbG"/>
                         <outlet property="imageView" destination="y2v-md-BpB" id="u4C-YR-fza"/>
                     </connections>
                 </viewController>

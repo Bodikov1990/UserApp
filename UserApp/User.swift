@@ -22,6 +22,7 @@ struct User {
 struct Person {
     var name: String
     var surname: String
+    var date: String
     var image: String
     
     var fullname: String {
@@ -29,7 +30,7 @@ struct Person {
     }
     
     static func getPerson() -> Person{
-        Person(name: "Kuat", surname: "Bodikov", image: "photo")
+        Person(name: "Kuat", surname: "Bodikov", date: "I was born in 23.03.1990", image: "photo")
     }
     
 }
